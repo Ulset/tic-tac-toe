@@ -1,25 +1,49 @@
 import logo from './logo.svg';
 import './App.css';
+import Toe from './Toe';
+import React from 'react'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor(){
+    super();
+    let startToe = []
+    for(let i=0;i<3*3;i++){
+      startToe.push(
+        {id: i, clicked: false, clickedBy: ""}
+      )
+    }
+    this.state = {
+      toes: startToe
+    }
+  }
+
+  handleClick = (id) => {
+    let newToes = this.state.toes
+    for(let el of newToes){
+      if(el.id == id){
+        el.clicked = true
+      }
+    }
+    this.setState({toes:newToes})
+  }
+
+  render = () => {
+    let output = []
+    for(let i =0;i<this.state.toes.length;i++){
+      let el = this.state.toes[i]
+      output.push(<Toe clicked={el.clicked} clickHandler={()=>{this.handleClick(el.id)}}/>)
+    }
+    return (
+      <div className="App">
+        <div className="board">
+          {output}
+        </div>
+        <div className="textContainer">
+          <p>Player </p>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default App;
