@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import Toe from './Toe';
 import React from 'react'
