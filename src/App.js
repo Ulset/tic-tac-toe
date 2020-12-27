@@ -66,6 +66,8 @@ class App extends React.Component {
     1, 2, 3
     4, 5, 6
     7, 8, 9
+
+    Sjekker om en person "eier" hele winnerpath for å se om den personen vinner.
     */
     let winnerPaths = [
       [1, 4, 7],
@@ -105,6 +107,19 @@ class App extends React.Component {
         </div>
       )
     }
+    if(this.state.players.length<2){
+      return (
+        <div className="App">
+          <div className="textContainer">
+            Spiller 1: <input type="text" id="player1input"></input>
+            <br></br>
+            Spiller 2: <input type="text" id="player2input"></input>
+            <br></br>
+            <button onClick={this.setPlayers}>Spill!</button>
+          </div>
+        </div>
+      )
+    }
 
     let output = []
     for(let i =0;i<this.state.toes.length;i++){
@@ -118,14 +133,7 @@ class App extends React.Component {
         </div>
         <br></br>
         <div className="textContainer">
-          <div style={{display: this.state.players.length>1 ? "none" : "block"}}>
-            Spiller 1: <input type="text" id="player1input"></input>
-            <br></br>
-            Spiller 2: <input type="text" id="player2input"></input>
-            <br></br>
-            <button onClick={this.setPlayers}>Spill!</button>
-          </div>
-          <div style={{display: this.state.players.length>1 ? "block" : "none"}}>
+          <div>
             <p>{this.state.currentPlayer} sin tur!</p>
           </div>
         </div>
