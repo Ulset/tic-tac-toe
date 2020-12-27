@@ -32,10 +32,9 @@ class App extends React.Component {
       }
     }
     let playerIndex = this.state.players.indexOf(this.state.currentPlayer)
-    let newPlayerIndex = playerIndex>= this.state.players.length-1 ? 0 : playerIndex+1
     this.setState({
       toes:newToes,
-      currentPlayer: this.state.players[newPlayerIndex]
+      currentPlayer: this.state.players[playerIndex === 0 ? 1 : 0]
     })
     this.findWinner();
   }
