@@ -52,6 +52,9 @@ class App extends React.Component {
   setPlayers = () => {
     let player1 = document.getElementById("player1input").value
     let player2 = document.getElementById("player2input").value
+    if(player1 === "" || player2 === ""){
+      return
+    }
     let playersInput = [player1, player2]
     this.setState({
       players: playersInput,
@@ -122,7 +125,13 @@ class App extends React.Component {
     let output = []
     for(let i =0;i<this.state.toes.length;i++){
       let el = this.state.toes[i]
-      output.push(<Toe clicked={el.clicked} clickHandler={()=>{this.handleClick(el.id)}} color={this.playerColors[this.state.players.indexOf(el.clickedBy)]}/>)
+      output.push(
+        <Toe 
+          clicked={el.clicked} 
+          clickHandler={()=>{this.handleClick(el.id)}} 
+          color={this.playerColors[this.state.players.indexOf(el.clickedBy)]}
+          key={i} />
+      )
     }
     return (
       <div className="App">
